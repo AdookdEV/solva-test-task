@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "app.twelvedata-api-url",
+    "type": "java.lang.String",
+    "description": "A URL of 'twelvedata.com' website"
+  },
+  {
+    "name": "app.twelvedata-api-key",
+    "type": "java.lang.String",
+    "description": "API key for'twelvedata.com' API"
+  },
+  {
+    "name": "currency-data-retriever.enabled",
+    "type": "java.lang.String",
+    "description": "Enable scheduler"
+  },
+  {
+    "name": "app.date-format",
+    "type": "java.lang.String",
+    "description": "Date format pattern for dates in responses and requests."
+  },
+  {
+    "name": "currency-data-retriever.cron-interval",
+    "type": "java.lang.String",
+    "description": "Cron Interval during which the scheduler will retrieve currency exchange rate data."
+  }
+]}
