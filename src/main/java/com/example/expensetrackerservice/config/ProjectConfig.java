@@ -12,6 +12,15 @@ import com.example.expensetrackerservice.utils.CustomJsonDateDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+
+@OpenAPIDefinition(
+        info = @Info(
+                title = "API для выставления лимитов транзакциям",
+                version = "1.0.0"
+        )
+)
 @Configuration
 public class ProjectConfig {
     @Value("${app.date-format}")

@@ -31,29 +31,24 @@ public class TransactionService {
         log.debug("Save transaction: {}", transactionRequest);
         var transaction = transactionMapper.mapToTransaction(transactionRequest);
 
-        try {
-            var activeLimit = getActiveLimit(transaction);
-            log.debug("Active limit: {}", activeLimit);
-            transaction.setLimitExceeded(false);
-            transaction.setLimit(activeLimit);
-            BigDecimal tranSum = currencyExchangeService.exchange(transaction.getSum(),
-                    transaction.getCurrencyShortname(), "USD");
-            log.debug("Exchanged transaction sum from {} {} to {} USD", transaction.getSum(),
-                    transaction.getCurrencyShortname(), tranSum);
-            var difference = activeLimit.getRemainingSum().subtract(tranSum);
-            if (difference.compareTo(BigDecimal.ZERO) < 0) {
-                transaction.setLimitExceeded(true);
-            }
-            transactionRepository.save(transaction);
-            log.debug("Saved transaction: {}", transaction);
-            expenseLimitService.updateRemainingSum(activeLimit.getId(), difference);
-            var transactionResponse = transactionMapper.mapToTransactionResponse(transaction);
-            return transactionResponse;
-        } catch (RuntimeException er) {
-            log.error("message: {}", er.getMessage());
+        var activeLimit = getActiveLimit(transaction);
+        log.debug("Active limit: {}", activeLimit);
+        transaction.setLimitExceeded(false);
+        transaction.setLimit(activeLimit);
+        BigDecimal tranSum = currencyExchangeService.exchange(transaction.getSum(),
+                transaction.getCurrencyShortname(), "USD");
+        log.debug("Exchanged transaction sum from {} {} to {} USD", transaction.getSum(),
+                transaction.getCurrencyShortname(), tranSum);
+        var difference = activeLimit.getRemainingSum().subtract(tranSum);
+        if (difference.compareTo(BigDecimal.ZERO) < 0) {
+            transaction.setLimitExceeded(true);
         }
+        transactionRepository.save(transaction);
+        log.debug("Saved transaction: {}", transaction);
+        expenseLimitService.updateRemainingSum(activeLimit.getId(), difference);
+        var transactionResponse = transactionMapper.mapToTransactionResponse(transaction);
+        return transactionResponse;
 
-        return null;
     }
 
     private ExpenseLimit getActiveLimit(Transaction transaction) {
