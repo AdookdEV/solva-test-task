@@ -16,7 +16,7 @@ spring:
 app:
   date-format: yyyy-MM-dd HH:mm:ssX
   twelvedata-api-url: https://api.twelvedata.com
-  twelvedata-api-key: ${TWELVE_DATA_API_KEY}
+  twelvedata-api-key: ${TWELVEDATA_API_KEY}
 
 currency-data-retriever:
   enabled: true
