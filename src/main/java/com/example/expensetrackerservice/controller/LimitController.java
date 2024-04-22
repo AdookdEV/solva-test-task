@@ -40,7 +40,7 @@ public class LimitController {
 
     @GetMapping("/all/{account}")
     @ResponseStatus(HttpStatus.OK)
-    public List<ExpenseLimit> getAllLimits(@PathVariable String account) {
+    public List<ExpenseLimit> getAllLimits(@PathVariable("account") String account) {
         log.debug("Request to get all limits for account {}", account);
         var res = expenseLimitRepository.findByAccount(account);
         return res;
@@ -49,7 +49,7 @@ public class LimitController {
     @GetMapping("/transactions/{account}")
     @ResponseStatus(HttpStatus.OK)
     public List<TransactionResponse> getLimitExceededTransactions(
-            @PathVariable String account,
+            @PathVariable("account") String account,
             @RequestParam(name = "page-number", defaultValue = "0", required = false) String pageNumber,
             @RequestParam(name = "page-size", defaultValue = "10", required = false) String pageSize) {
         log.debug("Request to get transactions with exceeded limit for account {}", account);

@@ -5,7 +5,7 @@ spring:
   datasource:
     username: ${POSTGRES_DB_USERNAME}
     password: ${POSTGRES_DB_PASSWORD}
-    url: jdbc:postgresql://localhost:${POSTGRES_DB_PORT}/${POSTGRES_DB_NAME}
+    url: jdbc:postgresql://${POSTGRES_DB_HOST}:${POSTGRES_DB_PORT}/${POSTGRES_DB_NAME}
   sql:
     init:
       mode: always

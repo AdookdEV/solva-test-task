@@ -5,13 +5,14 @@ spring:
   datasource:
     username: ${POSTGRES_DB_USERNAME}
     password: ${POSTGRES_DB_PASSWORD}
-    url: jdbc:postgresql://localhost:${POSTGRES_DB_PORT}/${POSTGRES_DB_NAME}
+    url: jdbc:postgresql://${POSTGRES_DB_HOST}:${POSTGRES_DB_PORT}/${POSTGRES_DB_NAME}
   sql:
     init:
       mode: always
   jpa:
     hibernate:
       ddl-auto: none
+
 app:
   date-format: yyyy-MM-dd HH:mm:ssX
   twelvedata-api-url: https://api.twelvedata.com

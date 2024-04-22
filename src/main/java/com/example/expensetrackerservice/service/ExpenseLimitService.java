@@ -48,7 +48,6 @@ public class ExpenseLimitService {
         return expenseLimitRepository.save(expenseLimit);
     }
 
-    @Transactional
     public ExpenseLimit createDefaultLimit(String account, ExpenseCategory expenseCategory) {
         return createLimit(CreateLimitDTO
                 .builder()

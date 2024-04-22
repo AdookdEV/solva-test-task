@@ -2,9 +2,9 @@
 -- drop table if exists t_transactions;
 -- drop table if exists t_expense_limit;
 
-drop table if exists t_transactions;
+-- drop table if exists t_transactions;
 
-drop table if exists t_expense_limits;
+-- drop table if exists t_expense_limits;
 
 
 create sequence if not exists t_expense_limits_id_seq start with 1 increment by 50;
