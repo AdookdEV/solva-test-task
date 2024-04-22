@@ -1,0 +1,28 @@
+services:
+  api:
+    build: ./
+    depends_on:
+      - postgres_db
+    container_name: api
+    ports:
+      - '8080:8080'
+    env_file:
+    - path: ./.env
+      required: true
+    environment:
+      - POSTGRES_DB_HOST=postgres_db
+    
+  postgres_db:
+    container_name: postgres_db
+    image: 'postgres:latest'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB_NAME}
+      - POSTGRES_USER=${POSTGRES_DB_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_DB_PASSWORD}
+    ports:
+      - '5432'
+volumes:
+  pgdata:
+
